@@ -41,10 +41,10 @@ html{
     background-color: white;
     position: absolute;
     top: 60px;
-    left: 90px;
+    left: 300px;
     border-radius: 20px;
-    height: 530px;
-    width: 1200px;
+    height: 550px;
+    width: 800px;
     box-shadow: 10px 10px 10px 10px rgb(156, 153, 153);
 
 }
@@ -97,8 +97,7 @@ html{
 }
 
 #pdf{
-    
-    margin-left: 550px;
+   margin-left: 180px;
     padding: 8px;
     border-radius: 5px;
     border : none;
@@ -204,7 +203,8 @@ html{
     border : none;
     font-size: 12px;
     font-weight: bold;
-    background-color: #78cafa;
+    background-color: rgb(7, 7, 126);
+    color: white;
     cursor: pointer;
  }
 
