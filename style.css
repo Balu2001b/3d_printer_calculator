@@ -226,6 +226,7 @@ html{
     margin-left: 250px;
     font-size: 15px;
     font-weight: bold;
+    margin-top: 8px;
     color: #040669;
  }
 
@@ -234,4 +235,5 @@ html{
     color: red;
     font-size: 15px;
     font-weight: bold;
+    
  }
