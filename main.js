@@ -173,6 +173,8 @@ function saveData() {
     localStorage.setItem("printData", JSON.stringify(data));
 }
 
+
+
 const exportBtn = document.getElementById("pdf");
 
 exportBtn.addEventListener("click", exportPDF);
@@ -180,69 +182,88 @@ exportBtn.addEventListener("click", exportPDF);
 function exportPDF() {
 
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
 
-    let y = 20;
+    const doc = new jsPDF({
+        orientation: "landscape",
+        unit: "mm",
+        format: "a4"
+    });
 
+    // Title
     doc.setFontSize(18);
-    doc.text("3D Printing Cost Report", 15, y);
+    doc.text("3D Printing Cost Report", 14, 15);
 
-    y += 12;
-
+    // Material
     doc.setFontSize(12);
-    doc.text(`Material : ${material.value.toUpperCase()}`, 15, y);
+    doc.text(`Material : ${material.value.toUpperCase()}`, 14, 25);
 
-    y += 10;
 
-    doc.text("Items:", 15, y);
-
-    y += 8;
+    // Create table rows
+    const rows = [];
 
     document.querySelectorAll(".items").forEach((item, index) => {
 
-        const name = item.querySelector(".item-name").value || "-";
-        const grams = item.querySelector(".grams").value || "0";
+        rows.push([
+            index + 1,
+            item.querySelector(".item-name").value || "-",
+            (item.querySelector(".grams").value || "0") + " g"
+        ]);
 
-        doc.text(
-            `${index + 1}. ${name} - ${grams} g`,
-            20,
-            y
-        );
+    });
 
-        y += 8;
+    // Table
+    doc.autoTable({
 
-        if (y > 270) {
-            doc.addPage();
-            y = 20;
+        startY: 35,
+
+        head: [[
+            "S.No",
+            "Item Name",
+            "Weight (g)"
+        ]],
+
+        body: rows,
+
+        theme: "grid",
+
+        styles: {
+            fontSize: 10,
+            cellPadding: 3,
+            valign: "middle"
+        },
+
+        headStyles: {
+            fillColor: [22, 101, 192],
+            textColor: 255,
+            halign: "center"
+        },
+
+        columnStyles: {
+            0: { halign: "center", cellWidth: 20 },
+            1: { cellWidth: 180 },
+            2: { halign: "center", cellWidth: 40 }
         }
 
     });
 
-    y += 8;
+    // Totals
+    let finalY = doc.lastAutoTable.finalY + 10;
 
-    doc.setFontSize(13);
-
+    doc.setFontSize(12);
     doc.text(
         `Total Grams : ${document.getElementById("total-grams").textContent} g`,
-        15,
-        y
+        14,
+        finalY
     );
 
-    y += 10;
+    finalY += 8;
 
     doc.text(
-        `Price / Gram : ₹${document.getElementById("price-per-gram").textContent}`,
-        15,
-        y
-    );
-
-    y += 10;
-
-    doc.text(
-        `Total Cost : ₹${document.getElementById("total-cost").textContent}`,
-        15,
-        y
+        `Total Cost : ${document.getElementById("total-cost").textContent}.00`,
+        14,
+        finalY
     );
 
     doc.save("3D_Print_Cost_Report.pdf");
+
 }
