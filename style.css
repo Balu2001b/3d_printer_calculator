@@ -1,0 +1,237 @@
+*{
+
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+html{
+
+    background-color: #e9e9e9;
+}
+.required::after {
+    content: " *";
+    color: red;
+}
+.container{
+
+    background-color: #78cafa;
+    border-radius: 10px;
+    width: 1200px;
+    height: 45px;
+    margin-left: 90px;
+
+}
+ .logo{
+
+    position: absolute;
+    top: 10px;
+    margin-left: 350px;
+    height: 50px;
+}
+.container h1{
+   
+    position: absolute;
+    top: 15px;
+    margin-left: 450px;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.container2{
+    background-color: white;
+    position: absolute;
+    top: 60px;
+    left: 90px;
+    border-radius: 20px;
+    height: 530px;
+    width: 1200px;
+    box-shadow: 10px 10px 10px 10px rgb(156, 153, 153);
+
+}
+
+.cal h1{
+
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+    color: red;
+}
+
+.option{
+
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.option label{
+
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 20px;
+    color: #040669;
+}
+
+#material{
+
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    margin-left: 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border : 1px solid #040669;
+   
+}
+
+#add-item{
+
+    margin-left: 40px;
+    padding : 4px;
+    border-radius: 5px;
+    border : none;
+    font-size: 11px;
+    font-weight: bold;
+    background-color: #77dd77;
+    cursor: pointer;
+}
+
+#pdf{
+    
+    margin-left: 550px;
+    padding: 8px;
+    border-radius: 5px;
+    border : none;
+    font-size: 11px;
+    font-weight: bold;
+    background-color: #87cefa;
+    cursor: pointer;
+
+}
+
+#clear-all{
+
+    margin-left: 20px;
+    padding: 8px;
+    border-radius: 5px;
+    border : none;
+    font-size: 11px;
+    font-weight: bold;
+    background-color: #ff0800;
+    cursor: pointer;
+
+}
+#add-item:hover, #pdf:hover, #clear-all:hover{
+
+    background-color: #bdc9c2;
+    transition: 0.3s;
+    scale: 1.1;
+}
+.bi-plus{
+
+    font-size: 20px;
+}
+
+.items-wrapper{
+    border:2px solid #eeeeee;
+    border-radius:10px;
+    padding:20px;
+    margin-top:20px;
+    margin-left: 30px;
+    height: 350px;
+    width : 600px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #e9e9e9;
+    scroll-behavior: smooth;
+
+}
+
+
+
+ .item-name{
+
+
+    margin-left: 45px;
+    border-radius: 5px;
+    border : 1px solid #040669;
+    padding: 5px;
+  
+ }
+
+ .grams{
+
+
+    border-radius: 5px;
+    border : 1px solid #040669;
+    margin-left: 70px;
+    cursor: pointer;
+    padding: 5px;
+ }
+
+ .item-number{
+
+    color: red;
+    font-size: 15px;
+    margin-top: 10px;
+  
+ }
+
+ .remove-btn{
+
+    padding: 5px;
+    margin-left: 50px;
+    border-radius: 5px;
+    border : none;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+ }
+
+ .remove-btn:hover{
+
+    background-color: rgb(235, 121, 121);
+    transition: 0.3s;
+    scale: 1.1;
+ }
+
+ #calculate{
+
+    margin-left: 560px;
+    margin-top: 10px;
+    padding : 10px 15px;
+    border-radius: 5px;
+    border : none;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #78cafa;
+    cursor: pointer;
+ }
+
+ #calculate:hover{
+
+    background-color: #bdc9c2;
+    transition: 0.3s;
+    scale: 1.1;
+ }
+
+ #result{
+
+    margin-top: -35px;
+   
+ }
+
+ .total_grams, .total_cost{
+
+    margin-left: 250px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #040669;
+ }
+
+ #total-grams, #total-cost{
+
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+ }
