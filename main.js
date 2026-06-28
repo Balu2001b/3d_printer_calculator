@@ -172,3 +172,77 @@ function saveData() {
 
     localStorage.setItem("printData", JSON.stringify(data));
 }
+
+const exportBtn = document.getElementById("pdf");
+
+exportBtn.addEventListener("click", exportPDF);
+
+function exportPDF() {
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    let y = 20;
+
+    doc.setFontSize(18);
+    doc.text("3D Printing Cost Report", 15, y);
+
+    y += 12;
+
+    doc.setFontSize(12);
+    doc.text(`Material : ${material.value.toUpperCase()}`, 15, y);
+
+    y += 10;
+
+    doc.text("Items:", 15, y);
+
+    y += 8;
+
+    document.querySelectorAll(".items").forEach((item, index) => {
+
+        const name = item.querySelector(".item-name").value || "-";
+        const grams = item.querySelector(".grams").value || "0";
+
+        doc.text(
+            `${index + 1}. ${name} - ${grams} g`,
+            20,
+            y
+        );
+
+        y += 8;
+
+        if (y > 270) {
+            doc.addPage();
+            y = 20;
+        }
+
+    });
+
+    y += 8;
+
+    doc.setFontSize(13);
+
+    doc.text(
+        `Total Grams : ${document.getElementById("total-grams").textContent} g`,
+        15,
+        y
+    );
+
+    y += 10;
+
+    doc.text(
+        `Price / Gram : ₹${document.getElementById("price-per-gram").textContent}`,
+        15,
+        y
+    );
+
+    y += 10;
+
+    doc.text(
+        `Total Cost : ₹${document.getElementById("total-cost").textContent}`,
+        15,
+        y
+    );
+
+    doc.save("3D_Print_Cost_Report.pdf");
+}
