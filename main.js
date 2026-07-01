@@ -39,6 +39,20 @@ function createItem(name = "", grams = "") {
                class="grams"
                placeholder="Enter Grams"
                value="${grams}">
+
+               <label class="time-label">Time</label><br>
+               <input type="time" class="time">
+
+        <div class="option_printer">
+            <label for="printer" class="printer">Select 3D Printer</label>
+            <select id="printer" name="printer">
+                <option value="bambu">Bambu</option>
+                <option value="elegoo">Elegoo Neptune 4 Max</option>
+               
+            </select>
+
+            <div>
+        
         
      
         <button type="button" class="remove-btn"> <i class="bi bi-trash3"></i> </button>
