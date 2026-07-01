@@ -28,13 +28,13 @@ function createItem(name = "", grams = "") {
 
     item.innerHTML = `
         <h3 class="item-number"></h3>
-   
+        <label class="name-label">Items</label><br><br>
         <input type="text"
                class="item-name"
                placeholder="Enter Item Name"
                value="${name}">
 
-       
+       <label class="gram-label">Grams</label><br>
         <input type="number"
                class="grams"
                placeholder="Enter Grams"
