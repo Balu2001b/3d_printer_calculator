@@ -132,13 +132,13 @@ html{
 }
 
 .items-wrapper{
-    border:1px solid black;
+    border:1px solid rgb(197, 197, 197);
     border-radius:10px;
-    padding:20px;
+    padding:15px;
     margin-top:20px;
     margin-left: 30px;
     height: 320px;
-    width : 600px;
+    width : 1100px;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #888 #e9e9e9;
@@ -146,7 +146,10 @@ html{
    
 }
 
+.items{
 
+    margin-bottom: -110px;
+}
 
  .item-name{
 
@@ -157,6 +160,7 @@ html{
     padding: 5px;
     position: relative;
     top: -30px;
+   
   
  }
 
@@ -170,7 +174,7 @@ html{
     cursor: pointer;
     padding: 5px;
     position: relative;
-    top: -58px;
+    top: -55px;
  }
  
 
@@ -179,8 +183,9 @@ html{
    margin-left: 50px;
     position: relative;
     top: -18px;
-   font-size: 15px;
+   font-size: 12px;
    color: #040669;
+   font-weight: bold;
  }
 
  .gram-label{
@@ -188,8 +193,50 @@ html{
   position: relative;
   top: -58px;
   left: 70px;
-  font-size: 15px;
+  font-size: 12px;
   color: #040669;
+  font-weight: bold;
+ }
+.time-label{
+
+    position: relative;
+    top: -78px;
+    margin-left: 90px;
+    font-size: 12px;
+    color: #040669;
+    font-weight: bold;
+}
+
+.time{
+
+    position: relative;
+    top: -80px;
+    left: 580px;
+    padding: 3px;
+    border-radius: 5px;
+    border: 1px solid #040669;
+}
+
+
+ .printer{
+
+    position: relative;
+    top: -130px;
+    left: 880px;
+    color: #040669;
+font-weight: bold;
+font-size: 12px;
+ }
+
+ #printer{
+
+    position: relative;
+    top: -100px;
+    left: 730px;
+    padding: 5px;
+    border: 1px solid #040669;
+    border-radius: 5px;
+    text-align: center;
  }
 
  .item-number{
@@ -209,7 +256,8 @@ html{
     color: red;
     cursor: pointer;
     position: relative;
-    top: -55px;
+    top: -130px;
+    left: 1030px;
    
  }
 
