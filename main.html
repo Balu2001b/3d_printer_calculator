@@ -8,6 +8,9 @@
     <title>3D_Levin</title>
 </head>
 <body>
+
+      <p id="toast" class="toast">Item Added</p>
+      <p id="toast_pdf" class="toast_pdf">Exported PDF Successfully</p>
     <div class="container">
         <header>
             
@@ -28,9 +31,9 @@
                 <option value="nylon">Nylon</option>
             </select>
 
-            <button id="add-item"><i class="bi bi-plus"></i> Add Items</button>
+            <button id="add-item" onclick="showToast();"><i class="bi bi-plus" ></i> Add Items</button>
             
-            <button id="pdf"><i class="bi bi-filetype-pdf"></i> Export as PDF</button>
+            <button id="pdf" onclick="showPdf();"><i class="bi bi-filetype-pdf"></i> Export as PDF</button>
 
 
         </div>
@@ -49,7 +52,25 @@
         </div>
 
 
+<script>
+    function showToast() {
+        var toast = document.getElementById("toast");
+        toast.classList.add("show");
+        setTimeout(function() {
+            toast.classList.remove("show");
+        }, 2500); 
+    }
+</script>
 
+<script>
+    function showPdf() {
+        var toast = document.getElementById("toast_pdf");
+        toast.classList.add("show");
+        setTimeout(function() {
+            toast.classList.remove("show");
+        }, 2500); 
+    }
+</script>
 
 
         <script src="main.js"></script>
