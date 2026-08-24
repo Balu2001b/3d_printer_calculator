@@ -1,283 +1,328 @@
+// ELEMENTS
 const material = document.getElementById("material");
 const addBtn = document.getElementById("add-item");
 const container = document.getElementById("items-container");
+const calculateBtn = document.getElementById("calculate");
+const exportBtn = document.getElementById("pdf");
 
-// Load data when page opens
-document.addEventListener("DOMContentLoaded", loadData);
+// PAGE LOAD
+document.addEventListener(
+    "DOMContentLoaded",
+    loadData
+);
 
-// Save material whenever it changes
-material.addEventListener("change", saveData);
+// MATERIAL CHANGE
+material.addEventListener(
+    "change",
+    saveData
+);
 
-// Add Item
-addBtn.addEventListener("click", () => {
-
-    if (!material.value) {
-        alert("Please select a material.");
-        return;
+// ADD ITEM
+addBtn.addEventListener(
+    "click",
+    () => {
+        if (!material.value) {
+            alert("Please select a material.");
+            return;
+        }
+        createItem();
+        saveData();
+        showToast();
     }
+);
 
-    createItem();
-    saveData();
-});
-
-// Create Item
-function createItem(name = "", grams = "") {
-
-    const item = document.createElement("div");
+// CREATE ITEM
+function createItem(
+    name = "",
+    grams = "",
+    time = "",
+    printer = "bambu"
+) {
+    const item =
+        document.createElement("div");
     item.className = "items";
-
     item.innerHTML = `
-        <h3 class="item-number"></h3>
-        <label class="name-label">Items</label><br><br>
-        <input type="text"
-               class="item-name"
-               placeholder="Enter Item Name"
-               value="${name}">
-
-       <label class="gram-label">Grams</label><br>
-        <input type="number"
-               class="grams"
-               placeholder="Enter Grams"
-               value="${grams}">
-
-               <label class="time-label">Time</label><br>
-               <input type="time" class="time">
-
-        <div class="option_printer">
-            <label for="printer" class="printer">Select 3D Printer</label>
-            <select id="printer" name="printer">
-                <option value="bambu">Bambu</option>
-                <option value="elegoo">Elegoo Neptune 4 Max</option>
-               
+        <div class="item-number"></div>
+        <div class="field"> <label> Items </label>
+            <input type="text" class="item-name" placeholder="Enter Item Name" value="${name}">
+        </div>
+        <div class="field"> <label> Grams </label>
+            <input type="number" class="grams" placeholder="Enter Grams" value="${grams}">
+        </div>
+        <div class="field"> <label> Time </label>
+            <input type="number" class="time" placeholder="Enter Time in Hours" value="${time}">
+        </div>
+        <div class="field"> <label> Select 3D Printer </label>
+            <select class="printer-select">
+                <option value="bambu"> Bambu </option>
+                <option value="elegoo"> Elegoo Neptune 4 Max </option>
             </select>
-
-            <div>
-        
-        
-     
-        <button type="button" class="remove-btn"> <i class="bi bi-trash3"></i> </button>
+        </div>
+        <button type="button" class="remove-btn">
+            <i class="bi bi-trash3"></i>
+        </button>
     `;
-
     container.appendChild(item);
-
+    item.querySelector(".printer-select").value = printer;
     item.querySelector(".item-name").addEventListener("input", saveData);
     item.querySelector(".grams").addEventListener("input", saveData);
-
-    item.querySelector(".remove-btn").addEventListener("click", () => {
-        item.remove();
-        updateNumbers();
-        saveData();
-    });
-
+    item.querySelector(".time").addEventListener("input", saveData);
+    item.querySelector(".printer-select").addEventListener("change", saveData);
+    item.querySelector(".remove-btn").addEventListener("click",() => {
+            item.remove();
+            updateNumbers();
+            saveData();
+        }
+    );
     updateNumbers();
 }
 
-// Update Item Numbers
+// UPDATE ITEM NUMBERS
 function updateNumbers() {
-
     document.querySelectorAll(".items").forEach((item, index) => {
-        item.querySelector(".item-number").textContent = ` ${index + 1}.`;
-    });
-
+    item.querySelector(".item-number").textContent = `${index + 1}.`;
+            }
+        );
 }
 
-// Save Everything
+// SAVE DATA
 function saveData() {
-
     const items = [];
-
     document.querySelectorAll(".items").forEach(item => {
-
-        items.push({
-            name: item.querySelector(".item-name").value,
-            grams: item.querySelector(".grams").value
-        });
-
-    });
-
-    const data = {
-        material: material.value,
-        items: items
-    };
-
-    localStorage.setItem("printData", JSON.stringify(data));
-}
-
-// Load Everything
-function loadData() {
-
-    const data = JSON.parse(localStorage.getItem("printData"));
-
-    if (!data) return;
-
-    material.value = data.material || "";
-
-    data.items.forEach(item => {
-        createItem(item.name, item.grams);
-    });
-}
-
-
-function loadData() {
-
-    const data = JSON.parse(localStorage.getItem("printData"));
-
-    if (!data) return;
-
-    material.value = data.material || "";
-
-    data.items.forEach(item => {
-        createItem(item.name, item.grams);
-    });
-
-    document.getElementById("total-grams").textContent = data.totalGrams || 0;
-    document.getElementById("price-per-gram").textContent = data.pricePerGram || 0;
-    document.getElementById("total-cost").textContent = data.totalCost || 0;
-}
-
-
-const calculateBtn = document.getElementById("calculate");
-
-calculateBtn.addEventListener("click", calculateCost);
-function calculateCost() {
-
-    let totalGrams = 0;
-
-    document.querySelectorAll(".grams").forEach(input => {
-        totalGrams += Number(input.value) || 0;
-    });
-
-    const materialPrices = {
-        pla: 7,
-        abs: 12,
-        petg: 10,
-        nylon: 15
-    };
-
-    const pricePerGram = materialPrices[material.value] || 0;
-    const totalCost = totalGrams * pricePerGram;
-
-    document.getElementById("total-grams").textContent = totalGrams;
-    document.getElementById("price-per-gram").textContent = pricePerGram;
-    document.getElementById("total-cost").textContent = totalCost;
-
-    saveData(); // Save calculation results
-}
-
-
-function saveData() {
-
-    const items = [];
-
-    document.querySelectorAll(".items").forEach(item => {
-        items.push({
-            name: item.querySelector(".item-name").value,
-            grams: item.querySelector(".grams").value
-        });
-    });
-
+        items.push({ 
+            name: item.querySelector(".item-name").value, 
+            grams: item.querySelector(".grams").value,
+            time: item.querySelector(".time").value,
+            printer: item.querySelector(".printer-select").value
+                });
+            }
+        );
     const data = {
         material: material.value,
         items: items,
         totalGrams: document.getElementById("total-grams").textContent,
+        totalTime: document.getElementById("total-time").textContent,
         pricePerGram: document.getElementById("price-per-gram").textContent,
         totalCost: document.getElementById("total-cost").textContent
     };
-
-    localStorage.setItem("printData", JSON.stringify(data));
+    localStorage.setItem("printData",
+        JSON.stringify(data)
+    );
 }
 
+// LOAD DATA
+function loadData() {
+    const savedData =
+        localStorage.getItem("printData");
+    if (!savedData) {
+        return;
+    }
+    const data =
+        JSON.parse(savedData);
+    material.value = data.material || "pla";
+    if (data.items) {
+        data.items.forEach(
+            item => {
+                createItem(
+                    item.name || "",
+                    item.grams || "",
+                    item.time || "",
+                    item.printer || "bambu"
+                );
+            }
+        );
+    }
+    document.getElementById("total-grams").textContent = data.totalGrams || 0;
+    document.getElementById("total-time").textContent = data.totalTime || "0 hrs";
+    document.getElementById("price-per-gram").textContent = data.pricePerGram || 0;
+    document.getElementById("total-cost").textContent = data.totalCost || 0;
+}
 
+// CALCULATE
+calculateBtn.addEventListener("click", calculateCost);
 
-const exportBtn = document.getElementById("pdf");
+function calculateCost() {
+    let totalGrams = 0;
+    let totalTime = 0;
 
-exportBtn.addEventListener("click", exportPDF);
+// CALCULATE TOTAL GRAMS
+    document.querySelectorAll(".grams").forEach(input => {
+                totalGrams += Number(input.value) || 0;
+            }
+        );
 
-function exportPDF() {
+// CALCULATE TOTAL TIME
+    document.querySelectorAll(".time").forEach(input => {
+                totalTime += Number(input.value) || 0;
+            }
+        );
 
-    const { jsPDF } = window.jspdf;
+// MATERIAL PRICES
+    const materialPrices = {
+        pla: 7,
+        abs: 12,
+    };
+    const pricePerGram = materialPrices[material.value] || 0;
+    const totalCost = totalGrams *pricePerGram;
 
-    const doc = new jsPDF({
-        orientation: "landscape",
-        unit: "mm",
-        format: "a4"
-    });
-
-    // Title
-    doc.setFontSize(18);
-    doc.text("3D Printing Cost Report", 14, 15);
-
-    // Material
-    doc.setFontSize(12);
-    doc.text(`Material : ${material.value.toUpperCase()}`, 14, 25);
-
-
-    // Create table rows
-    const rows = [];
-
-    document.querySelectorAll(".items").forEach((item, index) => {
-
-        rows.push([
-            index + 1,
-            item.querySelector(".item-name").value || "-",
-            (item.querySelector(".grams").value || "0") + " g"
-        ]);
-
-    });
-
-    // Table
-    doc.autoTable({
-
-        startY: 35,
-
-        head: [[
-            "S.No",
-            "Item Name",
-            "Weight (g)"
-        ]],
-
-        body: rows,
-
-        theme: "grid",
-
-        styles: {
-            fontSize: 10,
-            cellPadding: 3,
-            valign: "middle"
-        },
-
-        headStyles: {
-            fillColor: [22, 101, 192],
-            textColor: 255,
-            halign: "center"
-        },
-
-        columnStyles: {
-            0: { halign: "center", cellWidth: 20 },
-            1: { cellWidth: 180 },
-            2: { halign: "center", cellWidth: 40 }
+// CONVERT TIME
+    const days = Math.floor(totalTime / 24);
+    const hours = totalTime % 24;
+    let timeText = "";
+    if (days > 0) {
+        timeText += days +
+            (
+                days === 1
+                    ? " day"
+                    : " days"
+            );
+    }
+    if (hours > 0) {
+        if (timeText !== "") {
+            timeText += " ";
         }
 
-    });
+        timeText += hours +
+            (
+                hours === 1
+                    ? " hr"
+                    : " hrs"
+            );
+    }
+    if (timeText === "") {
+        timeText = "0 hrs";
+    }
+    document.getElementById("total-grams").textContent = totalGrams;
+    document.getElementById("total-time").textContent = timeText;
+    document.getElementById("price-per-gram").textContent = pricePerGram;
+    document.getElementById("total-cost").textContent = totalCost;
+    saveData();
+}
 
-    // Totals
-    let finalY = doc.lastAutoTable.finalY + 10;
+// EXPORT PDF
 
-    doc.setFontSize(12);
-    doc.text(
-        `Total Grams : ${document.getElementById("total-grams").textContent} g`,
-        14,
-        finalY
+exportBtn.addEventListener("click", exportPDF);
+function exportPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({
+            orientation: "landscape",
+            unit: "mm",
+            format: "a4"
+        });
+
+// LOAD COMPANY LOGO
+    const logo = new Image();
+    logo.src = "logo.jpeg";
+    logo.onload = function () {
+        doc.addImage(logo, "JPEG", 14, 7, 40, 28);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.text("3D LEVIN ENGINEERING PRIVATE LIMITED", 60, 11);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.text("#36, 2nd Floor, Phase 1 Road", 60, 17);
+        doc.text("Tie Balanagar", 60, 22);
+        doc.text("Hyderabad Telangana 500037 India", 60, 27);
+        doc.text("GSTIN 36AABCZ7706L1ZV", 60, 32);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(12);
+        doc.text( `Material : ${material.value.toUpperCase()}`, 14, 45);
+
+            // TABLE DATA
+    const rows = [];
+        document.querySelectorAll(".items").forEach((item, index) => {
+    const itemName = item.querySelector(".item-name").value || "-";
+    const grams = Number(item.querySelector(".grams").value) || 0;
+    rows.push([index + 1, itemName, `${grams} g`]);
+         }
     );
 
-    finalY += 8;
+ // PDF TABLE
+        doc.autoTable({startY: 50, head: [["S.No", "Item Name", "Weight (g)"]],
+        body: rows,
+        theme: "grid",
 
-    doc.text(
-        `Total Cost : ${document.getElementById("total-cost").textContent}.00`,
-        14,
-        finalY
-    );
+  // TABLE DATA STYLE
+         styles: {
+              font: "helvetica",
+              fontSize: 12,
+              cellPadding: 3,
+              valign: "middle"
+              },
 
+ // TABLE HEADER STYLE
+         headStyles: {
+              fillColor: [22, 101, 192],
+              textColor: 255,
+              fontSize: 12,
+              fontStyle: "bold",
+              halign: "center",
+              valign: "middle",
+              cellPadding: 3
+    },
+
+ // COLUMN WIDTHS
+     columnStyles: { 0: {
+          halign: "center",
+          cellWidth: 25
+     },
+    1: { cellWidth: 150 },
+    2: { halign: "center", cellWidth: 45 }
+         }
+            });
+
+  // TOTALS
+    let finalY = doc.lastAutoTable.finalY + 12;
+        const totalGrams = Number(
+            document.getElementById("total-grams").textContent) || 0;
+        const totalCost = Number(
+            document.getElementById("total-cost").textContent) || 0;
+
+   // TOTAL STYLE
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(12);
+
+ // TOTAL GRAMS
+            doc.text("Total Grams", 14, finalY);
+            doc.text(":", 50, finalY);
+            doc.text(`${totalGrams} g`, 57, finalY);
+
+// TOTAL COST
+  finalY += 9;
+    doc.text("Total Cost", 14, finalY);
+    doc.text(":", 50, finalY);
+    doc.text(totalCost.toFixed(2), 57, finalY);
+
+ // SAVE PDF
     doc.save("3D_Print_Cost_Report.pdf");
+        showPdf();
+        };
 
+// LOGO ERROR HANDLER
+    logo.onerror = function () {
+         alert("Logo not found! Please keep logo.jpeg in the same folder as index.html.");
+        };
+}
+
+// ITEM ADDED TOAST
+function showToast() {
+    const toast = document.getElementById("toast");
+    toast.classList.add("show");
+    setTimeout(
+        () => {
+            toast.classList.remove("show");
+        },
+        2500
+    );
+}
+
+// PDF SUCCESS TOAST
+function showPdf() {
+    const toast = document.getElementById("toast_pdf");
+    toast.classList.add("show");
+    setTimeout( () => {
+            toast.classList.remove("show");
+        },
+        2500
+    );
 }
