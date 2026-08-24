@@ -1,35 +1,27 @@
-*{
-
+* {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
 }
-html{
-
+html {
     background-color: #e9e9e9;
 }
+
+/* REQUIRED */
 .required::after {
     content: " *";
     color: red;
 }
-.container{
 
+/* HEADER */
+.container {
     background-color: #78cafa;
     border-radius: 10px;
     width: 1200px;
     height: 45px;
     margin-left: 90px;
-
 }
- .logo{
-
-    position: absolute;
-    top: 10px;
-    margin-left: 350px;
-    height: 50px;
-}
-.container h1{
-   
+.container h1 {
     position: absolute;
     top: 15px;
     margin-left: 450px;
@@ -37,7 +29,8 @@ html{
     letter-spacing: 2px;
 }
 
-.container2{
+/* MAIN CONTAINER */
+.container2 {
     background-color: white;
     position: absolute;
     top: 60px;
@@ -46,294 +39,212 @@ html{
     height: 510px;
     width: 1200px;
     box-shadow: 10px 10px 10px 10px rgb(156, 153, 153);
-
 }
 
-.cal h1{
-
-    font-size: 20px;
-    text-align: center;
-    margin-top: 10px;
-    color: red;
-}
-
-.option{
-
+/* OPTIONS */
+.option {
     margin-top: 10px;
     font-weight: bold;
 }
-
-.option label{
-
+.option label {
     font-size: 15px;
     font-weight: bold;
-    font-family: 'Poppins', sans-serif;
     margin-left: 20px;
     color: #040669;
 }
 
-#material{
-
+/* MATERIAL */
+#material {
     width: 200px;
     height: 30px;
     text-align: center;
     margin-left: 20px;
     margin-top: 10px;
     border-radius: 5px;
-    border : 1px solid #040669;
-   
+    border: 1px solid #040669;
 }
 
-#add-item{
-
+/* ADD BUTTON */
+#add-item {
     margin-left: 40px;
-    padding : 4px;
+    padding: 4px 8px;
     border-radius: 5px;
-    border : none;
+    border: none;
     font-size: 11px;
     font-weight: bold;
     background-color: #77dd77;
     cursor: pointer;
 }
 
-#pdf{
-   margin-left: 550px;
+/* PDF BUTTON */
+#pdf {
+    margin-left: 550px;
     padding: 8px;
     border-radius: 5px;
-    border : none;
+    border: none;
     font-size: 11px;
     font-weight: bold;
     background-color: #87cefa;
     cursor: pointer;
-
 }
 
-#clear-all{
-
-    margin-left: 20px;
-    padding: 8px;
-    border-radius: 5px;
-    border : none;
-    font-size: 11px;
-    font-weight: bold;
-    background-color: #ff0800;
-    cursor: pointer;
-
-}
-#add-item:hover, #pdf:hover, #clear-all:hover{
-
+/* BUTTON HOVER */
+#add-item:hover,
+#pdf:hover {
     background-color: #bdc9c2;
     transition: 0.3s;
-    scale: 1.1;
+    transform: scale(1.1);
 }
-.bi-plus{
-
+.bi-plus {
     font-size: 20px;
 }
 
-.items-wrapper{
-    border:1px solid rgb(197, 197, 197);
-    border-radius:10px;
-    padding:15px;
-    margin-top:20px;
+/* ITEMS WRAPPER */
+.items-wrapper {
+    border: 1px solid rgb(197, 197, 197);
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 20px;
     margin-left: 30px;
     height: 320px;
-    width : 1100px;
+    width: 1100px;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #888 #e9e9e9;
     scroll-behavior: smooth;
-   
+    box-sizing: border-box;
 }
 
-.items{
-
-    margin-bottom: -110px;
+/* ITEM ROW */
+.items {
+    display: grid;
+    grid-template-columns: 35px 1.5fr 1fr 1fr 1.5fr 50px;
+    gap: 15px;
+    align-items: end;
+    margin-bottom: 20px;
+    padding: 10px 5px;
+    border-bottom: 1px solid #eeeeee;
 }
 
- .item-name{
-
-
-    margin-left: 45px;
-    border-radius: 5px;
-    border : 1px solid #040669;
-    padding: 5px;
-    position: relative;
-    top: -30px;
-   
-  
- }
-
- .grams{
-
-
-    border-radius: 5px;
-    border : 1px solid #040669;
-    margin-left: 300px;
-    margin-top: -100px;
-    cursor: pointer;
-    padding: 5px;
-    position: relative;
-    top: -55px;
- }
- 
-
- .name-label{
-
-   margin-left: 50px;
-    position: relative;
-    top: -18px;
-   font-size: 12px;
-   color: #040669;
-   font-weight: bold;
- }
-
- .gram-label{
-
-  position: relative;
-  top: -58px;
-  left: 70px;
-  font-size: 12px;
-  color: #040669;
-  font-weight: bold;
- }
-.time-label{
-
-    position: relative;
-    top: -78px;
-    margin-left: 90px;
-    font-size: 12px;
-    color: #040669;
-    font-weight: bold;
-}
-
-.time{
-
-    position: relative;
-    top: -80px;
-    left: 580px;
-    padding: 3px;
-    border-radius: 5px;
-    border: 1px solid #040669;
-}
-
-
- .printer{
-
-    position: relative;
-    top: -130px;
-    left: 880px;
-    color: #040669;
-font-weight: bold;
-font-size: 12px;
- }
-
- #printer{
-
-    position: relative;
-    top: -100px;
-    left: 730px;
-    padding: 5px;
-    border: 1px solid #040669;
-    border-radius: 5px;
-    text-align: center;
- }
-
- .item-number{
-
+/* ITEM NUMBER */
+.item-number {
     color: #040669;
     font-size: 15px;
-  
- }
+    font-weight: bold;
+    padding-bottom: 8px;
+}
 
- .remove-btn{
+/* FIELD */
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
 
-    padding: 5px;
-    margin-left: 50px;
+/* FIELD LABEL */
+.field label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #040669;
+    white-space: nowrap;
+}
+
+/* INPUT + SELECT */
+.field input,
+.field select {
+    width: 100%;
+    height: 34px;
+    box-sizing: border-box;
+    padding: 6px 8px;
+    border: 1px solid #040669;
     border-radius: 5px;
-    border : none;
-   font-size: 15px;
+    font-size: 12px;
+    background-color: white;
+}
+
+/* FOCUS */
+.field input:focus,
+.field select:focus {
+    outline: none;
+    border: 2px solid #040669;
+}
+
+/* REMOVE BUTTON */
+.remove-btn {
+    width: 40px;
+    height: 34px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
     color: red;
+    font-size: 17px;
     cursor: pointer;
-    position: relative;
-    top: -130px;
-    left: 1030px;
-   
- }
+    align-self: end;
+}
 
- .remove-btn:hover{
-
+/* REMOVE HOVER */
+.remove-btn:hover {
     background-color: rgb(235, 121, 121);
+    color: white;
     transition: 0.3s;
-    scale: 1.1;
- }
+    transform: scale(1.1);
+}
 
- #calculate{
+/* REMOVE NUMBER ARROWS */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
 
+/* CALCULATE BUTTON */
+#calculate {
     margin-left: 1000px;
     margin-top: 10px;
-    padding : 10px 15px;
+    padding: 10px 15px;
     border-radius: 5px;
-    border : none;
+    border: none;
     font-size: 12px;
     font-weight: bold;
     background-color: rgb(7, 7, 126);
     color: white;
     cursor: pointer;
- }
-
- #calculate:hover{
-
+}
+#calculate:hover {
     background-color: #bdc9c2;
     transition: 0.3s;
-    scale: 1.1;
- }
+    transform: scale(1.1);
+}
 
- #result{
-
+/* RESULTS */
+#result {
     margin-top: -45px;
     margin-left: 500px;
-   
- }
-
- .total_grams, .total_cost{
-
+}
+.total_grams,
+.total_cost,
+.total_time {
     margin-left: 250px;
     font-size: 15px;
     font-weight: bold;
     margin-top: 8px;
     color: #040669;
- }
-
- #total-grams, #total-cost{
-
+}
+#total-grams,
+#total-cost,
+#total-time {
     color: red;
     font-size: 15px;
     font-weight: bold;
-    
- }
-
-
- #title{
-    color:#1e88e5;
-    font-size:30px;
-    text-align:center;
 }
 
-#material-text{
-    font-weight:bold;
-    color:#444;
-}
-
-#items-list{
-    border:1px solid #ccc;
-    padding:10px;
-}
-
-
-
-
-.toast {
+/* TOAST */
+.toast,
+.toast_pdf {
     visibility: hidden;
     width: 200px;
     background-color: #21b378;
@@ -349,64 +260,18 @@ font-size: 12px;
     font-size: 17px;
     opacity: 0;
 }
-
-/* Show the toast message */
-.toast.show {
-    visibility: visible;
-    animation: slideInFade 0.6s ease-out forwards, slideOutFade 0.6s ease-in 2.4s forwards;
-}
-
-/* Smooth animations */
-@keyframes slideInFade {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(-100px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-}
-
-@keyframes slideOutFade {
-    from {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateX(-50%) translateY(-100px);
-    }
-}
-
-
-
-
-
 .toast_pdf {
-    visibility: hidden;
     width: auto;
-    background-color: #21b378;
-    color: #fff;
-    text-align: center;
-    border-radius: 8px;
-    padding: 10px;
-    position: fixed;
-    z-index: 1000;
-    left: 50%;
-    transform: translateX(-50%) translateY(-100px);
-    top: 60px;
-    font-size: 17px;
-    opacity: 0;
 }
 
-/* Show the toast message */
+/* TOAST SHOW */
+.toast.show,
 .toast_pdf.show {
     visibility: visible;
     animation: slideInFade 0.6s ease-out forwards, slideOutFade 0.6s ease-in 2.4s forwards;
 }
 
-/* Smooth animations */
+/* TOAST ANIMATION */
 @keyframes slideInFade {
     from {
         opacity: 0;
@@ -417,7 +282,6 @@ font-size: 12px;
         transform: translateX(-50%) translateY(0);
     }
 }
-
 @keyframes slideOutFade {
     from {
         opacity: 1;
