@@ -5,79 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <title>3D_Levin</title>
+   <title>3D_Levin</title>
 </head>
 <body>
-
-      <p id="toast" class="toast">Item Added</p>
-      <p id="toast_pdf" class="toast_pdf">Exported PDF Successfully</p>
+    <p id="toast" class="toast"> Item Added </p>
+    <p id="toast_pdf" class="toast_pdf"> Exported PDF Successfully </p>
     <div class="container">
         <header>
-            
-            <h1>3D LEVIN ENGINEERING PVT LTD</h1>
+            <h1> 3D LEVIN ENGINEERING PVT LTD </h1>
         </header>
-
-       
     </div>
-   
     <div class="container2">
-     
         <div class="option">
-            <label for="material" class="required">Select Material</label>
+            <label for="material" class="required"> Select Material </label>
             <select id="material" name="material">
-                <option value="pla">PLA</option>
-                <option value="abs">ABS</option>
-                <option value="petg">PETG</option>
-                <option value="nylon">Nylon</option>
-            </select>
-
-            <button id="add-item" onclick="showToast();"><i class="bi bi-plus" ></i> Add Items</button>
-            
-            <button id="pdf" onclick="showPdf();"><i class="bi bi-filetype-pdf"></i> Export as PDF</button>
-
-
+                <option value="pla"> PLA </option>
+                <option value="abs"> ABS </option>
+             </select>
+        <button id="add-item"> <i class="bi bi-plus"></i> Add Items </button>
+        <button id="pdf"> <i class="bi bi-filetype-pdf"></i> Export as PDF </button>
         </div>
-
-         <div class="items-wrapper">
+        <div class="items-wrapper">
             <div id="items-container"></div>
-         </div>
-         <button type="button" id="calculate">Calculate</button>
-
-<div id="result">
-    <p class="total_grams">Total Grams: <span id="total-grams">0</span> </p>
-    <p class="price-gram" style="display: none;"><strong>Price / Gram:</strong><span id="price-per-gram"> 0</span></p>
-    <p class="total_cost">Total Cost: ₹<span id="total-cost">0</span></p>
-</div>
-        
         </div>
-
-
-<script>
-    function showToast() {
-        var toast = document.getElementById("toast");
-        toast.classList.add("show");
-        setTimeout(function() {
-            toast.classList.remove("show");
-        }, 2500); 
-    }
-</script>
-
-<script>
-    function showPdf() {
-        var toast = document.getElementById("toast_pdf");
-        toast.classList.add("show");
-        setTimeout(function() {
-            toast.classList.remove("show");
-        }, 2500); 
-    }
-</script>
-
-
-        <script src="main.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js"></script>
-
+        <button type="button" id="calculate"> Calculate </button>
+        <div id="result">
+            <p class="total_grams"> Total Grams: <span id="total-grams"> 0 </span> </p>
+            <p class="total_time"> Total Time: <span id="total-time"> 0 hrs </span> </p>
+            <p class="price-gram" style="display:none;"> <strong> Price / Gram: </strong> <span id="price-per-gram"> 0 </span> </p>
+            <p class="total_cost"> Total Cost: ₹ <span id="total-cost"> 0 </span> </p>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
